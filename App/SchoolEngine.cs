@@ -16,9 +16,6 @@ namespace SchoolCore.App
         public void Initialize()
         {
             school = new School("Inferno", 1995, SchoolTypes.Garden, InCity: "Medellin");
-            Printer.WriteTitle("Bienvenidos");
-            WriteLine(school);
-            Printer.DrawLine();
 
             LoadCourses();
             LoadAsignatures();

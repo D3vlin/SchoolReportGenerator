@@ -4,16 +4,28 @@ namespace SchoolCore.Util
 {
     public static class Printer
     {
-        public static void DrawLine(int length = 10)
+        public static void DrawTopLine(int length = 10)
         {
-            WriteLine("".PadLeft(length, '='));
+            Write("╔".PadRight(length, '═'));
+            WriteLine("═╗");
+        }
+        public static void DrawUnderLine(int length = 10)
+        {
+            Write("╚".PadRight(length, '═'));
+            WriteLine("═╝");
         }
 
         public static void WriteTitle(string title)
         {
-            DrawLine();
-            WriteLine(title);
-            DrawLine();
+            DrawTopLine(title.Length);
+            WriteLine($"║{title}║");
+            DrawUnderLine(title.Length);
+            WriteLine("");
+        }
+
+        public static void WriteOption(string option)
+        {
+            WriteLine($"╠{option}");
         }
 
         public static void PressEnter()
