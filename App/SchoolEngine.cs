@@ -8,10 +8,7 @@ namespace SchoolCore.App
     {
         public School school { get; set; }
 
-        public SchoolEngine()
-        {
-
-        }
+        public SchoolEngine() => school = new School("", 0, SchoolTypes.Unspecified);
 
         public void Initialize()
         {

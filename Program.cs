@@ -16,7 +16,9 @@ internal class Program
         engine.Initialize();
 
         #region Main
+        #pragma warning disable CS0168
         string option;
+        #pragma warning restore CS0168
         do
         {
             MenuEngine.PrintMenuOptions();
@@ -75,14 +77,13 @@ internal class Program
         var evaluationXAsignature = reporter.GetDictionaryEvaluationXAsignature();
         var promStudentXAsignature = reporter.GetPromStudentXAsignature();
 
-        Printer.WriteTitle("Reporteador");
+        Printer.WriteTitle("Ingreso");
         var newEvaluation = new Evaluation();
         string name, stringNote;
-        float note;
 
         WriteLine("Ingrese nombre de evaluacion");
         Printer.PressEnter();
-        name = ReadLine();
+        name = ReadLine() ?? "";
         if (string.IsNullOrWhiteSpace(name))
         {
             throw new ArgumentException("Nombre no puede seer vacio");
@@ -94,7 +95,7 @@ internal class Program
 
         WriteLine("Ingrese nota de evaluacion");
         Printer.PressEnter();
-        stringNote = ReadLine();
+        stringNote = ReadLine() ?? "";
         if (string.IsNullOrWhiteSpace(stringNote))
         {
             throw new ArgumentException("Nota no puede seer vacio");
@@ -126,6 +127,10 @@ internal class Program
             }
         }
 
+        void Exit(object? sender, EventArgs e)
+        {
+            Printer.WriteTitle("Se ha cerrado la plataforma!");
+        }
 
         #region Examples
         /*var school = new School("Inferno", 1995, SchoolTypes.Garden, InCity:"Medellin");
@@ -160,17 +165,11 @@ internal class Program
 
         school.CoursList.RemoveAll((cour) => cour.Name == "201" && cour.WorkingDay == WorkingDayTypes.Morning);
 
-        PrintSchoolCourses(school);*/
-        #endregion
+        PrintSchoolCourses(school);
 
         static bool Predicate(Course obj)
         {
             return obj.Name == "301";
-        }
-
-        void Exit(object? sender, EventArgs e)
-        {
-            Printer.WriteTitle("Se ha cerrado la plataforma!");
         }
 
         void PrintSchoolCourses(School school)
@@ -247,6 +246,7 @@ internal class Program
                 WriteLine($"Nombre: {courses[counter].Name}, Id: {courses[counter].Id}");
                 counter++;
             }
-        }
+        }*/
+        #endregion
     }
 }

@@ -17,9 +17,8 @@ namespace SchoolCore.App
         
         public IEnumerable<Evaluation> GetEvaluationList()
         {
-            //var list = _dictionary.GetValueOrDefault(DictionaryKey.School);
-            IEnumerable<Evaluation> response = null;
-            if (_dictionary.TryGetValue(DictionaryKey.Evaluation, out IEnumerable<BaseSchoolObj> list))
+            IEnumerable<BaseSchoolObj> list = _dictionary.GetValueOrDefault(DictionaryKey.Evaluation) ?? new List<Evaluation>();
+            if (list.Count() > 0)
                 return list.Cast<Evaluation>();
             else
                 return  new List<Evaluation>();

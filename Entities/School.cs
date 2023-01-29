@@ -12,17 +12,16 @@ namespace SchoolCore.Entities
         public List<Course> CourseList { get; set; }
         public string address { get; set; }
 
-        public School(string InName)
+        public School(string InName, int InFoundationYear, SchoolTypes InSchoolType, string InCountry = "", string InCity = "")
         {
             this.Name = InName;
-            this.FoundationYear = 1995;
-            this.country = "Colombia";
-            this.city = "Medellin";
+            this.FoundationYear = InFoundationYear;
+            this.country = InCountry;
+            this.city = InCity;
+            this.Courses = new Course[0];
+            this.CourseList = new List<Course>();
+            this.address = "";
         }
-
-        public School(string InName, int InFoundationYear) => (Name, FoundationYear) = (InName, InFoundationYear);
-
-        public School(string InName, int InFoundationYear, SchoolTypes InSchoolType, string InCountry = "", string InCity = "") => (Name, FoundationYear, country, city) = (InName, InFoundationYear, InCountry, InCity);
 
         public override string ToString()
         {

@@ -5,7 +5,11 @@ namespace SchoolCore.Entities
         public string Id { get; private set; }
         public string Name { get; set; }
 
-        public BaseSchoolObj() => Id = Guid.NewGuid().ToString();        
+        public BaseSchoolObj()
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = "";
+        }
 
         public override string ToString()
         {

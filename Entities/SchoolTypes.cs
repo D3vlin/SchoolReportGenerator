@@ -2,8 +2,6 @@ namespace SchoolCore.Entities
 {
     public enum SchoolTypes
     {
-        Primary,
-        Secundary,
-        Garden
+        Primary, Secundary, Garden, Unspecified
     }
 }
