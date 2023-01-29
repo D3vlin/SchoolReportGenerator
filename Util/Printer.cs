@@ -15,8 +15,9 @@ namespace SchoolCore.Util
             WriteLine("═╝");
         }
 
-        public static void WriteTitle(string title)
+        public static void WriteTitle(string title, bool newLine = false)
         {
+            if (newLine) { WriteLine(""); }
             DrawTopLine(title.Length);
             WriteLine($"║{title}║");
             DrawUnderLine(title.Length);
@@ -25,7 +26,7 @@ namespace SchoolCore.Util
 
         public static void WriteOption(string option)
         {
-            WriteLine($"╠{option}");
+            WriteLine($"╠═{option}");
         }
 
         public static void PressEnter()

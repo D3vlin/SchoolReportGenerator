@@ -12,63 +12,59 @@ internal class Program
         AppDomain.CurrentDomain.ProcessExit += Exit;
         #endregion
 
-        var engine = new SchoolEngine();
-        engine.Initialize();
-
         #region Main
-        #pragma warning disable CS0168
-        string option;
-        #pragma warning restore CS0168
-        do
-        {
-            MenuEngine.PrintMenuOptions();
-            option = ReadLine() ?? "";
+        var schoolEngine = new SchoolEngine();
+        schoolEngine.Initialize();
 
-            switch (option)
-            {
-                case "1":
-                    WriteLine("Lista de alumnos");
-                    break;
-
-                case "2":
-                    WriteLine("Lista de asignaturas");
-                    break;
-
-                case "3":
-                    WriteLine("Lista de notas");
-                    break;
-
-                case "4":
-                    WriteLine("Lista de promedios");
-                    break;
-
-                case "5":
-                    WriteLine("Salir");
-                    break;
-
-                default:
-                    WriteLine("Ingrese una opción correcta");
-                    break;
-            }
-        } while (option != "5");
-        #endregion
-        
-        var objs = engine.GetSchoolObjects(
+        var schoolObjecs = schoolEngine.GetSchoolObjects(
             out int evaluationsCounter,
             out int studentsCounter,
             out int asignaturesCounter,
             out int coursesCounter
         );
 
-        var IPlaceList = from obj in objs
+#pragma warning disable CS0168
+        string option;
+        string exitOption;
+#pragma warning restore CS0168
+        do
+        {
+            option = MenuEngine.PrintAndSelectMenuOptions();
+
+            if (MenuEngine.ValidateMenuOption(option) && !MenuEngine.IsExitOption(option))
+            {
+                MenuEngine.PrintOption(option);
+                switch (option)
+                {
+                    case "1":
+                        break;
+
+                    case "2":
+                        break;
+
+                    case "3":
+                        break;
+
+                    case "4":
+                        break;
+                }
+            }
+
+            if (!MenuEngine.RepeatMenu())
+                option = MenuEngine.exitOption;
+
+        } while (!MenuEngine.IsExitOption(option));
+        #endregion
+
+        var IPlaceList = from obj in schoolObjecs
                          where obj is IPlace
                          select (IPlace)obj;
 
-        engine.school.CleanAddress();
+        schoolEngine.school.CleanAddress();
 
         Printer.WriteTitle("Diccionario");
-        var dictionary = engine.GetObjectDictionary();
-        engine.PrintDictionary(dictionary);
+        var dictionary = schoolEngine.GetObjectDictionary();
+        schoolEngine.PrintDictionary(dictionary);
 
         Printer.WriteTitle("Reporteador");
         var reporter = new Reporter(dictionary);
