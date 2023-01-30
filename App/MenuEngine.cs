@@ -14,12 +14,13 @@ namespace SchoolCore.App
             if (MenuOptions.Count() == 0)
             {
                 MenuOptions.Add("1", "1. Estado de la escuela");
-                MenuOptions.Add("2", "2. Listar asignaturas");
-                MenuOptions.Add("3", "3. Listar notas");
-                MenuOptions.Add("4", "4. Listar promedio");
-                MenuOptions.Add("5", "5. Salir");
+                MenuOptions.Add("2", "2. Listar cursos");
+                MenuOptions.Add("3", "3. Listar asignaturas");
+                MenuOptions.Add("4", "4. Listar notas");
+                MenuOptions.Add("5", "5. Listar promedio");
+                MenuOptions.Add("6", "6. Salir");
 
-                exitOption = "5";
+                exitOption = MenuOptions.Count().ToString();
             }
         }
 
@@ -35,7 +36,7 @@ namespace SchoolCore.App
         {
             Console.Clear();
             PrintMenuOptions();
-            Console.WriteLine("\n↓ Ingrese una opción del menu ↓");
+            Printer.WriteAnswer("\n↓ Ingrese una opción del menu ↓");
             return Console.ReadLine() ?? "";
         }
 
@@ -84,7 +85,7 @@ namespace SchoolCore.App
 
         private static void PrintInvalidOption()
         {
-            Console.WriteLine("\n→ Debe ingresar una opcion del menu,\nPresiones una tecla para continuar...");
+            Printer.WriteError("\n→ Debe ingresar una opcion del menu,\nPresiones una tecla para continuar...");
             Console.ReadKey();
         }
     }

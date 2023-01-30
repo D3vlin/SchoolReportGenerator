@@ -12,7 +12,7 @@ namespace SchoolCore.App
 
         public void Initialize()
         {
-            school = new School("Inferno", 1995, SchoolTypes.Garden, InCity: "Medellin");
+            school = new School("BlackClowm", 1995, SchoolTypes.Secundary, "Colombia", "Medellin");
 
             LoadCourses();
             LoadAsignatures();
@@ -204,6 +204,18 @@ namespace SchoolCore.App
             dictionary.Add(DictionaryKey.Evaluation, evaluationList.Cast<BaseSchoolObj>());
 
             return dictionary;
+        }
+
+        public void PrintSchoolStatus(Dictionary<DictionaryKey, IEnumerable<BaseSchoolObj>> dictionary)
+        {
+            IEnumerable<BaseSchoolObj> schoolList = dictionary.GetValueOrDefault(DictionaryKey.School) ?? new List<School>();
+            if (schoolList.Count() > 0)
+            {
+                foreach (var school in schoolList)
+                    Printer.WriteResult(school.ToString());
+            }
+            
+            Printer.PressAnyKey();
         }
 
         public void PrintDictionary(

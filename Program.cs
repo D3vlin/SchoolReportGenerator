@@ -9,7 +9,9 @@ internal class Program
     private static void Main(string[] args)
     {
         #region EventHandler
-        AppDomain.CurrentDomain.ProcessExit += Exit;
+        AppDomain root = AppDomain.CurrentDomain;
+        root.AssemblyLoad += Load;
+        root.ProcessExit += Exit;
         #endregion
 
         #region Main
@@ -22,6 +24,12 @@ internal class Program
             out int asignaturesCounter,
             out int coursesCounter
         );
+
+        var IPlaceList = from obj in schoolObjecs
+                         where obj is IPlace
+                         select (IPlace)obj;
+
+        var schoolDictionary = schoolEngine.GetObjectDictionary();
 
 #pragma warning disable CS0168
         string option;
@@ -37,9 +45,11 @@ internal class Program
                 switch (option)
                 {
                     case "1":
+                        schoolEngine.PrintSchoolStatus(schoolDictionary);
                         break;
 
                     case "2":
+                        schoolEngine.PrintDictionary(schoolDictionary);
                         break;
 
                     case "3":
@@ -50,24 +60,16 @@ internal class Program
                 }
             }
 
-            if (!MenuEngine.RepeatMenu())
+            if (!MenuEngine.IsExitOption(option) && !MenuEngine.RepeatMenu())
                 option = MenuEngine.exitOption;
 
         } while (!MenuEngine.IsExitOption(option));
         #endregion
 
-        var IPlaceList = from obj in schoolObjecs
-                         where obj is IPlace
-                         select (IPlace)obj;
-
         schoolEngine.school.CleanAddress();
 
-        Printer.WriteTitle("Diccionario");
-        var dictionary = schoolEngine.GetObjectDictionary();
-        schoolEngine.PrintDictionary(dictionary);
-
         Printer.WriteTitle("Reporteador");
-        var reporter = new Reporter(dictionary);
+        var reporter = new Reporter(schoolDictionary);
         var evaluationList = reporter.GetEvaluationList();
         var asignatureList = reporter.GetAsignatureList();
         var evaluationXAsignature = reporter.GetDictionaryEvaluationXAsignature();
@@ -121,6 +123,11 @@ internal class Program
             {
                 WriteLine("Finally");
             }
+        }
+
+        void Load(object? sender, EventArgs e)
+        {
+            
         }
 
         void Exit(object? sender, EventArgs e)

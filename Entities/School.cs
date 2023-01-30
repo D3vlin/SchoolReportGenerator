@@ -25,7 +25,7 @@ namespace SchoolCore.Entities
 
         public override string ToString()
         {
-            return $"Escuela\nNombre: {Name}, Tipo: {schoolType},\nPais: {country}, Ciudad: {city}";
+            return $"┌Estado De La Escuela\n│\n├Nombre: {Name}\n├Tipo: {schoolType}\n├Pais: {country}\n├Ciudad: {city}";
         }
 
         public void CleanAddress()
