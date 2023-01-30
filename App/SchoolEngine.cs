@@ -90,51 +90,13 @@ namespace SchoolCore.App
             }
         }
 
-        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(
-            bool getEvaluations = true,
-            bool getStudents = true,
-            bool getAsignatures = true,
-            bool getCourses = true
-        )
-        {
-            return GetSchoolObjects(out int dummy, out dummy, out dummy, out dummy);
-        }
+        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(bool getEvaluations = true, bool getStudents = true, bool getAsignatures = true, bool getCourses = true) { return GetSchoolObjects(out int dummy, out dummy, out dummy, out dummy); }
         
-        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(
-            out int evaluationsCounter,
-            bool getEvaluations = true,
-            bool getStudents = true,
-            bool getAsignatures = true,
-            bool getCourses = true
-        )
-        {
-            return GetSchoolObjects(out evaluationsCounter, out int dummy, out dummy, out dummy);
-        }
+        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(out int evaluationsCounter, bool getEvaluations = true, bool getStudents = true, bool getAsignatures = true, bool getCourses = true ) { return GetSchoolObjects(out evaluationsCounter, out int dummy, out dummy, out dummy); }
         
-        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(
-            out int evaluationsCounter,
-            out int studentsCounter,
-            bool getEvaluations = true,
-            bool getStudents = true,
-            bool getAsignatures = true,
-            bool getCourses = true
-        )
-        {
-            return GetSchoolObjects(out evaluationsCounter, out studentsCounter, out int dummy, out dummy);
-        }
+        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(out int evaluationsCounter, out int studentsCounter, bool getEvaluations = true, bool getAsignatures = true, bool getCourses = true ) { return GetSchoolObjects(out evaluationsCounter, out studentsCounter, out int dummy, out dummy); }
         
-        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(
-            out int evaluationsCounter,
-            out int studentsCounter,
-            out int asignaturesCounter,
-            bool getEvaluations = true,
-            bool getStudents = true,
-            bool getAsignatures = true,
-            bool getCourses = true
-        )
-        {
-            return GetSchoolObjects(out evaluationsCounter, out studentsCounter, out asignaturesCounter, out int dummy);
-        }
+        public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(out int evaluationsCounter, out int studentsCounter, out int asignaturesCounter, bool getEvaluations = true, bool getStudents = true, bool getAsignatures = true, bool getCourses = true ) { return GetSchoolObjects(out evaluationsCounter, out studentsCounter, out asignaturesCounter, out int dummy); }
 
         public IReadOnlyList<BaseSchoolObj> GetSchoolObjects(
             out int evaluationsCounter,
@@ -213,6 +175,21 @@ namespace SchoolCore.App
             {
                 foreach (var school in schoolList)
                     Printer.WriteResult(school.ToString());
+            }
+            
+            Printer.PressAnyKey();
+        }
+
+        public void PrintAllCourses(Dictionary<DictionaryKey, IEnumerable<BaseSchoolObj>> dictionary)
+        {
+            IEnumerable<BaseSchoolObj> courseList = dictionary.GetValueOrDefault(DictionaryKey.Course) ?? new List<Course>();
+            if (courseList.Count() > 0)
+            {
+                foreach (var course in courseList)
+                {
+                    Printer.WriteResult(course.ToString());
+                    Console.WriteLine("");
+                }
             }
             
             Printer.PressAnyKey();

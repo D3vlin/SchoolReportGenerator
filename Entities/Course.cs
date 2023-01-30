@@ -19,5 +19,10 @@ namespace SchoolCore.Entities
         {
             //
         }
+
+        public override string ToString()
+        {
+            return $"┌Estado del curso {Name}\n│\n├Jornada: {WorkingDay}\n├Total Asignaturas: {Asignatures.Count()}\n├Total Alumnos: {Students.Count()}\n├Dirección: {address}";
+        }
     }
 }

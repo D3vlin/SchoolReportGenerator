@@ -49,10 +49,11 @@ internal class Program
                         break;
 
                     case "2":
-                        schoolEngine.PrintDictionary(schoolDictionary);
+                        schoolEngine.PrintAllCourses(schoolDictionary);
                         break;
 
                     case "3":
+                        schoolEngine.PrintDictionary(schoolDictionary);
                         break;
 
                     case "4":

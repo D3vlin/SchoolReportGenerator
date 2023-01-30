@@ -25,7 +25,7 @@ namespace SchoolCore.Entities
 
         public override string ToString()
         {
-            return $"┌Estado De La Escuela\n│\n├Nombre: {Name}\n├Tipo: {schoolType}\n├Pais: {country}\n├Ciudad: {city}";
+            return $"┌Estado de la escuela {Name}\n│\n├Año de fundación: {FoundationYear}\n├Pais: {country}\n├Ciudad: {city}\n├Tipo: {schoolType}\n├Total Cursos: {CourseList.Count()}\n├Dirección: {address}";
         }
 
         public void CleanAddress()
