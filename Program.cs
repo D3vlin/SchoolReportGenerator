@@ -10,7 +10,6 @@ internal class Program
     {
         #region EventHandler
         AppDomain root = AppDomain.CurrentDomain;
-        root.AssemblyLoad += Load;
         root.ProcessExit += Exit;
         #endregion
 
@@ -71,70 +70,6 @@ internal class Program
 
         } while (!MenuEngine.IsExitOption(option));
         #endregion
-
-        schoolEngine.school.CleanAddress();
-
-        Printer.WriteTitle("Reporteador");
-        var reporter = new Reporter(schoolDictionary);
-        var evaluationList = reporter.GetEvaluationList();
-        var asignatureList = reporter.GetAsignatureList();
-        var evaluationXAsignature = reporter.GetDictionaryEvaluationXAsignature();
-        var promStudentXAsignature = reporter.GetPromStudentXAsignature();
-
-        Printer.WriteTitle("Ingreso");
-        var newEvaluation = new Evaluation();
-        string name, stringNote;
-
-        WriteLine("Ingrese nombre de evaluacion");
-        Printer.PressEnter();
-        name = ReadLine() ?? "";
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw new ArgumentException("Nombre no puede seer vacio");
-        }
-        {
-            newEvaluation.Name = name.ToLower();
-            WriteLine("Ingreso correcto");
-        }
-
-        WriteLine("Ingrese nota de evaluacion");
-        Printer.PressEnter();
-        stringNote = ReadLine() ?? "";
-        if (string.IsNullOrWhiteSpace(stringNote))
-        {
-            throw new ArgumentException("Nota no puede seer vacio");
-        }
-        else
-        {
-            try
-            {
-                newEvaluation.Note = float.Parse(stringNote);
-
-                if (newEvaluation.Note < 0 || newEvaluation.Note > 5)
-                {
-                    throw new ArgumentOutOfRangeException("LA nota se desbordo");
-                }
-
-                WriteLine("Ingreso correcto");
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                WriteLine(e.Message);
-            }
-            catch (Exception)
-            {
-                throw new ArgumentException("Nota no es un numero valido");
-            }
-            finally
-            {
-                WriteLine("Finally");
-            }
-        }
-
-        void Load(object? sender, EventArgs e)
-        {
-            
-        }
 
         void Exit(object? sender, EventArgs e)
         {
