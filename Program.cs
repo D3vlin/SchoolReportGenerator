@@ -61,7 +61,7 @@ internal class Program
                         break;
 
                     case "5":
-                        schoolEngine.PrintDictionary(schoolDictionary);
+                        schoolEngine.PrintDictionary(schoolDictionary, true);
                         break;
                 }
             }

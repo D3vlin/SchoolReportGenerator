@@ -17,7 +17,7 @@ namespace SchoolCore.Entities
 
         public override string ToString()
         {
-            return $"Nombre: {Name}, Nota: {Note}, Id: {Id}, Type: {GetType()}";
+            return $"┌Resultado de evaluación de {Name}\n│\n├ID: {Id}\n├Alumno: {Student.Name}\n├Nota: {Note}";
         }
     }
 }

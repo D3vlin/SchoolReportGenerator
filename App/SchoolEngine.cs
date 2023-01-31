@@ -34,7 +34,7 @@ namespace SchoolCore.App
                             var evaluation = new Evaluation
                             {
                                 Asignature = asignature,
-                                Name = $"{asignature.Name} Nota:{i + 1}",
+                                Name = $"{asignature.Name} #{i + 1}",
                                 Note = MathF.Round(5 * (float) random.NextDouble(), 2),
                                 Student = student
                             };
@@ -237,41 +237,47 @@ namespace SchoolCore.App
         )
         {
             foreach (var obj in dictionary)
-            {
-                Printer.WriteTitle($"{obj.Key}");
-                
+            {                
                 foreach (var value in obj.Value)
                 {
                     switch (obj.Key)
                     {
                         case DictionaryKey.School:
-                            Console.WriteLine($"Escuela: {value}");
+                            Printer.WriteResult($"{value}");
+                            Console.WriteLine("");
                         break;
 
                         case DictionaryKey.Course:
                             var tmpCourse = value as Course;
                             if (tmpCourse != null)
                             {
-                                int counter = ((Course)value).Students.Count;
-                                Console.WriteLine($"Curso: {value.Name}, Cantidad Alumnos {counter}");
+                                Printer.WriteResult($"{value}");
+                                Console.WriteLine("");
                             }
                         break;
 
                         case DictionaryKey.Student:
-                            Console.WriteLine($"Alumno: {value.Name}");
+                            Printer.WriteResult($"{value}");
+                            Console.WriteLine("");
                         break;
 
                         case DictionaryKey.Evaluation:
                             if (printEvaluation)
-                                Console.WriteLine(value);
+                            {
+                                Printer.WriteResult($"{value}");
+                                Console.WriteLine("");
+                            }
                         break;
 
                         default:
-                            Console.WriteLine(value);
+                            Printer.WriteResult($"{value}");
+                            Console.WriteLine("");
                         break;
                     }
                 }
             }
+
+            Printer.PressAnyKey();
         }
     }
 }
