@@ -53,10 +53,15 @@ internal class Program
                         break;
 
                     case "3":
-                        schoolEngine.PrintDictionary(schoolDictionary);
+                        schoolEngine.PrintAllAsignatures(schoolDictionary);
                         break;
 
                     case "4":
+                        schoolEngine.PrintAllStudents(schoolDictionary);
+                        break;
+
+                    case "5":
+                        schoolEngine.PrintDictionary(schoolDictionary);
                         break;
                 }
             }

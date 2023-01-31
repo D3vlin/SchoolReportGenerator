@@ -16,8 +16,8 @@ namespace SchoolCore.App
                 MenuOptions.Add("1", "1. Estado de la escuela");
                 MenuOptions.Add("2", "2. Listar cursos");
                 MenuOptions.Add("3", "3. Listar asignaturas");
-                MenuOptions.Add("4", "4. Listar notas");
-                MenuOptions.Add("5", "5. Listar promedio");
+                MenuOptions.Add("4", "4. Listar alumnos");
+                MenuOptions.Add("5", "5. Imprimir todo");
                 MenuOptions.Add("6", "6. Salir");
 
                 exitOption = MenuOptions.Count().ToString();

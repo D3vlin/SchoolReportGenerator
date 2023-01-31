@@ -171,11 +171,9 @@ namespace SchoolCore.App
         public void PrintSchoolStatus(Dictionary<DictionaryKey, IEnumerable<BaseSchoolObj>> dictionary)
         {
             IEnumerable<BaseSchoolObj> schoolList = dictionary.GetValueOrDefault(DictionaryKey.School) ?? new List<School>();
-            if (schoolList.Count() > 0)
-            {
-                foreach (var school in schoolList)
-                    Printer.WriteResult(school.ToString());
-            }
+            
+            foreach (var school in schoolList)
+                Printer.WriteResult(school.ToString());
             
             Printer.PressAnyKey();
         }
@@ -183,11 +181,49 @@ namespace SchoolCore.App
         public void PrintAllCourses(Dictionary<DictionaryKey, IEnumerable<BaseSchoolObj>> dictionary)
         {
             IEnumerable<BaseSchoolObj> courseList = dictionary.GetValueOrDefault(DictionaryKey.Course) ?? new List<Course>();
+            
+            foreach (var course in courseList)
+            {
+                Printer.WriteResult(course.ToString());
+                Console.WriteLine("");
+            }
+            
+            Printer.PressAnyKey();
+        }
+
+        public void PrintAllAsignatures(Dictionary<DictionaryKey, IEnumerable<BaseSchoolObj>> dictionary)
+        {
+            IEnumerable<BaseSchoolObj> courseList = dictionary.GetValueOrDefault(DictionaryKey.Course) ?? new List<Course>();
             if (courseList.Count() > 0)
             {
-                foreach (var course in courseList)
+                foreach (var course in courseList.Cast<Course>())
                 {
-                    Printer.WriteResult(course.ToString());
+                    Printer.WriteOption($"Curso {course.Name}: Asignaturas registradas\n");
+                    foreach (var asignature in course.Asignatures)
+                    {
+                        Printer.WriteResult(asignature.ToString());
+                        Console.WriteLine("");
+                    }
+                    Console.WriteLine("");
+                }
+            }
+            
+            Printer.PressAnyKey();
+        }
+
+        public void PrintAllStudents(Dictionary<DictionaryKey, IEnumerable<BaseSchoolObj>> dictionary)
+        {
+            IEnumerable<BaseSchoolObj> courseList = dictionary.GetValueOrDefault(DictionaryKey.Course) ?? new List<Course>();
+            if (courseList.Count() > 0)
+            {
+                foreach (var course in courseList.Cast<Course>())
+                {
+                    Printer.WriteOption($"Curso {course.Name}: Alumnos registrados\n");
+                    foreach (var student in course.Students)
+                    {
+                        Printer.WriteResult(student.ToString());
+                        Console.WriteLine("");
+                    }
                     Console.WriteLine("");
                 }
             }

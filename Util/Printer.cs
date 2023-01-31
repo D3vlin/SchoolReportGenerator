@@ -28,7 +28,7 @@ namespace SchoolCore.Util
         public static void WriteOption(string option)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            WriteLine($"╠═{option}");
+            WriteLine($"╠═ {option}");
         }
 
         public static void WriteAnswer(string answer)
